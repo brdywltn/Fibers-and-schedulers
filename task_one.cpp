@@ -17,6 +17,6 @@ int main(){
         // 6. call set_context with c
         set_context(&c);
     }
-    
+
     return 0;
 }
