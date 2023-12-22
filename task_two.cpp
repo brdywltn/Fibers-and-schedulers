@@ -52,13 +52,17 @@ public:
 // foo func
 void foo (){
     std::cout << "Foo fighter" << std::endl;
+    exit(0);
 }
 
 // main
 int main(){
     //set f by creating fiber with foo
+    Fiber f(&foo);
     //set c calling method function get_context from f
+    Context c = f.get_context();
     //call set_context with c
-
+    set_context(&c);
+    
     return 0;
 }
