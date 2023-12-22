@@ -4,10 +4,15 @@
 
 
 // func foo:
-int foo(){
+void foo(){
     //output 'you called foo'
     std::cout << "you called foo" << std::endl;
-    //call function exit
+    //exit(0); //commented out because this stops goo running
+}
+
+int goo(){
+    std::cout << "you called goo" << std::endl;
+
     exit(0);
     return 0;
 }
@@ -36,6 +41,18 @@ int main(){
     c.rsp = sp;
     // call set_context with c 
     set_context(&c);
+
+
+    char new_stack[4096];
+    char *nsp = new_stack + 4096;
+
+    nsp = reinterpret_cast<char*>(reinterpret_cast<uintptr_t>(nsp) & -16L);
+    nsp -= 128;
+    Context g;
+    g.rip = reinterpret_cast<void*>(&goo);
+    g.rsp = sp;
+    set_context(&g);
+
 
     return 0;
 }
