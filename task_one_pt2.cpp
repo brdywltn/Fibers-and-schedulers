@@ -2,19 +2,21 @@
 #include <cstdint>
 #include "context/context.hpp"
 
+//Global context
+Context gooContext;
+
 
 // func foo:
 void foo(){
     //output 'you called foo'
     std::cout << "you called foo" << std::endl;
-    //exit(0); //commented out because this stops goo running
+    set_context(&gooContext);
 }
 
-int goo(){
+void goo(){
     std::cout << "you called goo" << std::endl;
 
     exit(0);
-    return 0;
 }
 
 //func main:
@@ -39,20 +41,17 @@ int main(){
     c.rip = reinterpret_cast<void*>(&foo);
     // set rsp of c to sp
     c.rsp = sp;
-    // call set_context with c 
-    set_context(&c);
-
+    // call set_context with c
 
     char new_stack[4096];
     char *nsp = new_stack + 4096;
 
     nsp = reinterpret_cast<char*>(reinterpret_cast<uintptr_t>(nsp) & -16L);
     nsp -= 128;
-    Context g;
-    g.rip = reinterpret_cast<void*>(&goo);
-    g.rsp = sp;
-    set_context(&g);
+    gooContext.rip = reinterpret_cast<void*>(&goo);
+    gooContext.rsp = nsp;
 
+    set_context(&c);
 
     return 0;
 }
