@@ -2,6 +2,28 @@
 #include <cstdint>
 #include "context/context.hpp"
 
+class Scheduler {
+private:
+//fibers_:std::deque<fiber*>
+//context_: Context
+public:
+//scheduler()
+    //initialise context
+//~scheduler
+    //get rid
+//spawn(f:fiber*): void
+    //add context to back of queue
+//do_it(): void
+    //return here to reenter scheduler
+    //continue executing fibers in RR mode
+        //pop front fiber from queue
+        //set entry point for fiber
+//fiber_exit(): void
+    //jump back to loop
+};
+
+//global scheduler instance?
+
 // fiber class
 class Fiber {
 private:
