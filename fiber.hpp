@@ -8,8 +8,6 @@ private:
     char* stack_top_;
 public:
     Fiber(void (*function)());
-
     ~Fiber();
-
     Context get_context() const;
 };
