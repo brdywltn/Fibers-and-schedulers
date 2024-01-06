@@ -1,4 +1,4 @@
-### Advanced Systems Programming - Assignment
+# Advanced Systems Programming - Assignment
 
 ## Table of Contents
 
@@ -6,7 +6,7 @@
 2. [Task 1 - Part One](#task-1---part-one)
 3. [Task 1 - Part Two](#task-1---part-two)
 4. [Task 2](#task-2)
-5. [Task 2 - Tests](#task-2---tests)
+5. [Task 2 - Extended](#task-2---final-part)
 
 
 ## Introduction
@@ -82,4 +82,29 @@ Here is the displayed output of the compiled file:
 
 ![Task Two Output](screenshots/tasktwooutput.jpg)
 
-## Task 2 - Tests
+## Task 2 - Final part
+This small extension to the work completed as part of task 2 adds the passing of a second arguement on fiber creation, which is a pointer to an integer. As required by the specs, the fibers themselves use the function get_data to access the pointer that was passed in at creation.
+
+The main features of this task are the following extended classes:
+
+![extended fiber class](screenshots/fiber2.jpg)
+![extended scheduler class](screenshots/scheduler2.jpg)
+
+To build this task, use the run the following commands while inside the [task2_final](task2_final/) directory:
+
+```bash
+clang++ -c fiber.cpp -o fiber.o
+clang++ -c scheduler.cpp -o scheduler.o
+clang++ -c main.cpp -o main.o
+clang++ -I.../context/context.o fiber.o scheduler.o main.o ../context/context.o -o program
+```
+
+and then execute with:
+
+```bash
+./program
+```
+
+Here is the displayed output of the compiled file:
+
+![Task Two extended output](screenshots/task2finaloutput.jpg)
