@@ -108,3 +108,21 @@ and then execute with:
 Here is the displayed output of the compiled file:
 
 ![Task Two extended output](screenshots/task2finaloutput.jpg)
+
+## Task 3 
+This part of the assignment is based around adding in the ability for fibers to yield control back to the scheduler.
+
+To build this task, use the run the following commands while inside the [task3](task3/) directory:
+
+```bash
+clang++ -c fiber.cpp -o fiber.o
+clang++ -c scheduler.cpp -o scheduler.o
+clang++ -c main.cpp -o main.o
+clang++ -I.../context/context.o fiber.o scheduler.o main.o ../context/context.o -o program
+```
+
+and then execute with:
+
+```bash
+./program
+```
