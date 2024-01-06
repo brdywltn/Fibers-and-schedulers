@@ -1,5 +1,3 @@
-// scheduler.cpp
-
 #include "scheduler.hpp"
 
 Scheduler::Scheduler(void* data) : shared_data_(data) {
