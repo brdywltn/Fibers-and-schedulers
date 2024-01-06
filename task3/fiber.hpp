@@ -1,5 +1,6 @@
 #pragma once
 #include "../context/context.hpp"
+#include <setjmp.h>
 
 class Fiber {
 private:
@@ -12,5 +13,5 @@ public:
     ~Fiber();
     Context get_context() const;
     void* get_data() const;  // Added function to get shared data
-    int yield();  // Added function to yield control to the scheduler
+    void yield();  // Added function to yield control to the scheduler
 };

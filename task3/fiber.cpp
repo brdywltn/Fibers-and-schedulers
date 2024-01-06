@@ -1,4 +1,5 @@
 #include "fiber.hpp"
+#include "../context/context.hpp"
 #include <cstdint>
 
 Fiber::Fiber(void (*function)(), void* data) : shared_data_(data) {
@@ -27,12 +28,11 @@ void* Fiber::get_data() const {
     return shared_data_;
 }
 
-int Fiber::yield() {
+void Fiber::yield() {
     //save the current context
+    //get_context(&context_); //currently not accepting this, too many parameters?
     //set the ip to nullptr to yield
     context_.rip = nullptr;
     //switch back to scheduler
     set_context(&context_);
-
-    return 0;
 }
